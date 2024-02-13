@@ -1,11 +1,13 @@
 const express = require('express')
 const  bodyparser = require('body-parser')
 const {ObjectId} = require('mongodb')
+const cors= require('cors')
 
 // Importing the required functions from dbconnection.cjs
 const {connecttodb, getdb} = require('./dbconnection.cjs')
 
 const app = express()
+app.use(cors())
 app.use(bodyparser.json())
 
 connecttodb(function(error){
@@ -50,7 +52,7 @@ app.get('/get-entries', function(request,response){
     }).catch(function(){
         console.log('cannot get files')
         response.json({
-            'status':'cannot add successfully'
+            'status':'cannot get successfully'
         })
     })
 })
