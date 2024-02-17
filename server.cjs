@@ -7,7 +7,10 @@ const cors= require('cors')
 const {connecttodb, getdb} = require('./dbconnection.cjs')
 
 const app = express()
-app.use(cors())
+app.use(cors({
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
+}))
 app.use(bodyparser.json())
 
 connecttodb(function(error){
